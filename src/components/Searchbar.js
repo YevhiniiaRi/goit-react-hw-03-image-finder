@@ -1,19 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { BiSearch } from 'react-icons/bi';
 
-const Searchbar = ({ value, onChange, onSubmit }) => {
+const Searchbar = ({ onSubmit }) => {
+  const [query, setQuery] = useState('');
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    onSubmit(query);
+  };
+
+  const handleChange = e => {
+    setQuery(e.target.value);
+  };
+
   return (
-    <div className="Searchbar">
-      <input
-        className="SearchForm"
-        type="text"
-        autocomplete="off"
-        autofocus
-        placeholder="Search images and photos"
-        value={value}
-        onChange={onChange}
-      />
-      <button onClick={onSubmit}>Search</button>
-    </div>
+    <header className="Searchbar">
+      <form className="SearchForm" onSubmit={handleSubmit}>
+        <button type="submit" className="SearchForm-button">
+          <BiSearch className="icon" />
+          <span className="SearchForm-button-label">Search</span>
+        </button>
+
+        <input
+          className="SearchForm-input"
+          type="text"
+          autoComplete="off"
+          autoFocus
+          placeholder="Search images and photos"
+          value={query}
+          onChange={handleChange}
+        />
+      </form>
+    </header>
   );
 };
 

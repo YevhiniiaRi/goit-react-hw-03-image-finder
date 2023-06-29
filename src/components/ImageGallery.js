@@ -3,7 +3,7 @@ import ImageGalleryItem from './ImageGalleryItem';
 
 const ImageGallery = ({ images, onImageClick }) => {
   return (
-    <div className="ImageGallery">
+    <ul className="ImageGallery">
       {images.map(image => (
         <ImageGalleryItem
           key={image.id}
@@ -11,7 +11,7 @@ const ImageGallery = ({ images, onImageClick }) => {
           onClick={() => onImageClick(image)}
         />
       ))}
-    </div>
+    </ul>
   );
 };
 
